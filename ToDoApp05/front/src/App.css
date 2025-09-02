@@ -1,0 +1,27 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .app {
+    padding: 10px;
+  }
+  
+  .app-container {
+    gap: 1rem;
+  }
+}

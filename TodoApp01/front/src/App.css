@@ -1,0 +1,210 @@
+.app {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px 0;
+}
+
+.app__container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.app__header {
+  text-align: center;
+  margin-bottom: 32px;
+  position: relative;
+  background: white;
+  padding: 32px 24px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.app__title {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--dark-color);
+  margin: 0 0 8px 0;
+  background: linear-gradient(135deg, var(--primary-color), #764ba2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.app__subtitle {
+  font-size: 16px;
+  color: #6c757d;
+  margin: 0;
+  font-weight: 400;
+}
+
+.app__refresh {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: var(--light-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.app__refresh:hover:not(:disabled) {
+  background: var(--primary-color);
+  color: white;
+  transform: rotate(180deg) scale(1.1);
+}
+
+.app__refresh:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  animation: spin 1s linear infinite;
+}
+
+.app__error {
+  background: #f8d7da;
+  border: 1px solid #f5c6cb;
+  color: #721c24;
+  padding: 16px 20px;
+  border-radius: var(--border-radius);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  animation: slideDown 0.3s ease-out;
+}
+
+.app__error-icon {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.app__error-message {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.app__error-close {
+  background: none;
+  border: none;
+  color: #721c24;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  border-radius: 4px;
+  transition: var(--transition);
+  flex-shrink: 0;
+}
+
+.app__error-close:hover {
+  background: rgba(114, 28, 36, 0.1);
+}
+
+.app__footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: var(--border-radius);
+  backdrop-filter: blur(10px);
+}
+
+.app__footer p {
+  margin: 0;
+  color: white;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* 动画 */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .app {
+    padding: 10px 0;
+  }
+
+  .app__container {
+    padding: 0 16px;
+  }
+
+  .app__header {
+    padding: 24px 16px;
+    margin-bottom: 24px;
+  }
+
+  .app__title {
+    font-size: 24px;
+  }
+
+  .app__subtitle {
+    font-size: 14px;
+  }
+
+  .app__refresh {
+    top: 16px;
+    right: 16px;
+    width: 36px;
+    height: 36px;
+    font-size: 16px;
+  }
+
+  .app__error {
+    padding: 12px 16px;
+    margin-bottom: 16px;
+  }
+
+  .app__footer {
+    margin-top: 32px;
+    padding: 20px 16px;
+  }
+}
+
+/* 加载状态的全局样式 */
+.app--loading {
+  cursor: wait;
+}
+
+.app--loading * {
+  pointer-events: none;
+}
+
+/* 优化滚动性能 */
+.app__container > * {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* 焦点可访问性 */
+.app__refresh:focus,
+.app__error-close:focus {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
+}
