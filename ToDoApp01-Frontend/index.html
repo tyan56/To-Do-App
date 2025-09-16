@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>待办事项应用</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>待办事项应用</h1>
+      <p class="subtitle">高效管理您的日常任务</p>
+    </header>
+
+    <!-- 添加任务表单 -->
+    <section class="add-task-section">
+      <form id="todo-form" autocomplete="off">
+        <div class="form-group">
+          <label for="new-task" class="visually-hidden">新任务</label>
+          <input type="text" id="new-task" name="new-task" placeholder="请输入新任务" required>
+        </div>
+        <div class="form-group">
+          <label for="new-priority" class="visually-hidden">优先级</label>
+          <select id="new-priority" name="priority">
+            <option value="medium">优先级</option>
+            <option value="high">高</option>
+            <option value="medium">中</option>
+            <option value="low">低</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="new-date" class="visually-hidden">截止日期</label>
+          <input type="date" id="new-date" name="date">
+        </div>
+        <button type="submit" class="add-btn">添加任务</button>
+      </form>
+    </section>
+
+    <!-- 搜索和筛选 -->
+    <section class="search-filter-section">
+      <div class="search-box">
+        <input type="search" id="search-task" placeholder="搜索任务...">
+        <span class="search-icon">🔍</span>
+      </div>
+      
+      <div class="filter-controls">
+        <select id="filter-priority" name="priority">
+          <option value="">全部优先级</option>
+          <option value="high">高优先级</option>
+          <option value="medium">中优先级</option>
+          <option value="low">低优先级</option>
+        </select>
+        
+        <select id="filter-status" name="status">
+          <option value="">全部状态</option>
+          <option value="active">未完成</option>
+          <option value="completed">已完成</option>
+        </select>
+        
+        <input type="date" id="filter-date" name="date" placeholder="按日期筛选">
+        
+        <button type="button" id="clear-filters" class="clear-btn">清除筛选</button>
+      </div>
+    </section>
+
+    <!-- 任务统计 -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <span class="stat-number" id="total-tasks">0</span>
+          <span class="stat-label">总任务</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="active-tasks">0</span>
+          <span class="stat-label">未完成</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="completed-tasks">0</span>
+          <span class="stat-label">已完成</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number" id="high-priority-tasks">0</span>
+          <span class="stat-label">高优先级</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 任务列表 -->
+    <section class="tasks-section">
+      <div class="section-header">
+        <h2>任务列表</h2>
+        <div class="view-controls">
+          <button id="sort-by-date" class="sort-btn active">按日期</button>
+          <button id="sort-by-priority" class="sort-btn">按优先级</button>
+        </div>
+      </div>
+      
+      <div id="todo-list" class="todo-list">
+        <!-- 任务项将通过JavaScript动态生成 -->
+      </div>
+      
+      <div id="empty-state" class="empty-state" style="display: none;">
+        <div class="empty-icon">📝</div>
+        <h3>暂无任务</h3>
+        <p>添加您的第一个任务开始使用吧！</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 编辑任务模态框 -->
+  <div id="edit-modal" class="modal" style="display: none;">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>编辑任务</h3>
+        <button id="close-modal" class="close-btn">&times;</button>
+      </div>
+      <form id="edit-form">
+        <div class="form-group">
+          <label for="edit-task">任务内容</label>
+          <input type="text" id="edit-task" name="task" required>
+        </div>
+        <div class="form-group">
+          <label for="edit-priority">优先级</label>
+          <select id="edit-priority" name="priority">
+            <option value="high">高</option>
+            <option value="medium">中</option>
+            <option value="low">低</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="edit-date">截止日期</label>
+          <input type="date" id="edit-date" name="date">
+        </div>
+        <div class="modal-actions">
+          <button type="button" id="cancel-edit" class="cancel-btn">取消</button>
+          <button type="submit" class="save-btn">保存</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
